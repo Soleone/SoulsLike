@@ -6,6 +6,11 @@
 #include "Components/ActorComponent.h"
 #include "LockonComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(
+	FOnTargetChangedSignature,
+	ULockonComponent, OnTargetChangedDelegate,
+	AActor*, NewTargetActorRef
+);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class SOULSLIKE_API ULockonComponent : public UActorComponent
@@ -37,6 +42,9 @@ public:
 	ULockonComponent();
 
 	AActor* CurrentTargetActor;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnTargetChangedSignature OnTargetChangedDelegate;
 
 	UPROPERTY(EditAnywhere)
 	double BreakDistance{ 1000.0 };
