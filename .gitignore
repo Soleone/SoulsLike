@@ -1,0 +1,29 @@
+# Ignore binary and intermediate files
+Binaries/
+Intermediate/
+Build/
+DerivedDataCache/
+Saved/
+.vs
+
+# Ignore configuration files
+Config/
+
+# Ignore plugin binaries and intermediates
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+
+# Ignore Visual Studio files
+*.sln
+*.suo
+*.VC.db
+*.VC.opendb
+
+# Ignore compiled object files and libraries
+*.obj
+*.exe
+*.dll
+*.lib
+
+# Ignore precompiled headers
+*.pch
