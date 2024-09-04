@@ -39,7 +39,7 @@ public:
 	AActor* CurrentTargetActor;
 
 	UPROPERTY(EditAnywhere)
-	double BreakDistance{ 1000.f };
+	double BreakDistance{ 1000.0 };
 
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

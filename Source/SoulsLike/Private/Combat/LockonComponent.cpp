@@ -2,6 +2,7 @@
 
 
 #include "Combat/LockonComponent.h"
+#include "Interfaces/Enemy.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -78,6 +79,7 @@ void ULockonComponent::StartLockon(float Radius)
 	) };
 
 	if (!bHasFoundTarget) { return; }
+	if (!OutResult.GetActor()->Implements<UEnemy>()) { return; }
 
 	CurrentTargetActor = OutResult.GetActor();
 
@@ -111,9 +113,12 @@ void ULockonComponent::UpdateLockonRotation()
 
 bool ULockonComponent::HandleLockonBreak()
 {	
-	float DistanceToTarget{ FVector::Distance(PlayerLocation, TargetLocation) };
+	double DistanceToTarget{ FVector::Distance(PlayerLocation, TargetLocation) };
 	if (DistanceToTarget > BreakDistance) {
 		EndLockon();
 		return true;
+	}
+	else {
+		return false;
 	}
 }
