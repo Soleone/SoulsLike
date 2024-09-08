@@ -58,4 +58,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void ToggleLockon(float Radius = 750.f);
+
+	UPROPERTY(EditAnywhere)
+	float CameraVerticalOffset{ 75.f };
 };
