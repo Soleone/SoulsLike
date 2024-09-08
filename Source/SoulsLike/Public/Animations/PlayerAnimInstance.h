@@ -16,7 +16,7 @@ class SOULSLIKE_API UPlayerAnimInstance : public UAnimInstance
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float CurrentVelocity{ 0.0f };
+	float CurrentSpeed{ 0.0f };
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float CurrentDirection{ 0.0f };
@@ -25,7 +25,7 @@ protected:
 	bool bIsInCombat{ false };
 
 	UFUNCTION(BlueprintCallable)
-	void UpdateVelocity();
+	void UpdateSpeed();
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateDirection();
