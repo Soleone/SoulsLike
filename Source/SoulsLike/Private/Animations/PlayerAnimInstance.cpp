@@ -11,4 +11,19 @@ void UPlayerAnimInstance::UpdateVelocity()
 
 	CurrentVelocity = static_cast<float>(Velocity.Length());
 }
-	
+
+void UPlayerAnimInstance::UpdateDirection()
+{
+	APawn* PawnRef{ TryGetPawnOwner() };
+	if (!IsValid(PawnRef) || !bIsInCombat) { return; }
+
+	CurrentDirection = CalculateDirection(
+		PawnRef->GetVelocity(),
+		PawnRef->GetActorRotation()
+	);
+}
+
+void UPlayerAnimInstance::HandleUpdatedTarget(AActor* NewTargetActorRef)
+{
+	bIsInCombat = IsValid(NewTargetActorRef);
+}

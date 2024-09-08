@@ -2,6 +2,7 @@
 
 
 #include "Characters/MainCharacter.h"
+#include "Animations/PlayerAnimInstance.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -15,7 +16,7 @@ AMainCharacter::AMainCharacter()
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	PlayerAnim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 }
 
 // Called every frame
@@ -31,4 +32,3 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
-

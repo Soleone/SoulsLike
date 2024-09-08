@@ -27,4 +27,10 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void UpdateVelocity();
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateDirection();
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void HandleUpdatedTarget(AActor* NewTargetActorRef);
 };
