@@ -36,14 +36,7 @@ void UCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 void UCombatComponent::ComboAttack()
 {
 	Character->PlayAnimMontage(AttackAnimations[ComboCounter]);
-	ComboCounter++;
-	int MaxCombo{ AttackAnimations.Num() };
-
-	ComboCounter = UKismetMathLibrary::Wrap(
-		ComboCounter,
-		-1,
-		MaxCombo - 1
-	);
-	//ComboCounter = UKismetMathLibrary::Wrap(ComboCounter++, 0, AttackAnimations.Num() - 1);
+	
+	ComboCounter = UKismetMathLibrary::Wrap(++ComboCounter, -1, AttackAnimations.Num() - 1);
 }
 
