@@ -12,6 +12,17 @@ class SOULSLIKE_API UTraceComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
+	class USkeletalMeshComponent* SkeletalComp;
+
+	UPROPERTY(EditAnywhere)
+	FName StartSocketName;
+
+	UPROPERTY(EditAnywhere)
+	FName EndSocketName;
+
+	UPROPERTY(EditAnywhere)
+	FName SocketRotation;
+
 public:	
 	// Sets default values for this component's properties
 	UTraceComponent();
