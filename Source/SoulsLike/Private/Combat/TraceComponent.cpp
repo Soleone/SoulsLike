@@ -32,13 +32,31 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	FVector EndSocketLocation{ SkeletalComp->GetSocketLocation(EndSocketName) };
 	FQuat ShapeRotation{ SkeletalComp->GetSocketQuaternion(SocketRotation) };
 
-	UE_LOG(
-		LogTemp,
-		Warning,
-		TEXT("StartSocketLocation: %s, EndSocketLocation: %s, ShapeRotation: %s"),
-		*StartSocketLocation.ToString(),
-		*EndSocketLocation.ToString(),
-		*ShapeRotation.ToString()
-	);
+	TArray<FHitResult> HitResults;
+	double WeaponLength{ FVector::Distance(StartSocketLocation, EndSocketLocation) };
+	FVector WeaponDimensions{ WeaponLength, WeaponWidth, WeaponHeight };
+	FCollisionQueryParams IgnoreParams{
+		FName { TEXT("Ignore Collision Params") },
+		false,
+		GetOwner()
+	};
+
+	bool bHasFoundTarget{ GetWorld()->SweepMultiByChannel(
+		HitResults,
+		StartSocketLocation,
+		EndSocketLocation,
+		ShapeRotation,
+		ECollisionChannel::ECC_GameTraceChannel1,
+		FCollisionShape::MakeBox(WeaponDimensions / 2),
+		IgnoreParams
+	) };
+
+	if (bHasFoundTarget)
+	{
+		for (const FHitResult& HitResult : HitResults)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Hit Enemy"));
+		}
+	}
 }
 

@@ -23,6 +23,11 @@ class SOULSLIKE_API UTraceComponent : public UActorComponent
 	UPROPERTY(EditAnywhere)
 	FName SocketRotation;
 
+	UPROPERTY(EditAnywhere)
+	float WeaponWidth{ 30.f };
+
+	UPROPERTY(EditAnywhere)
+	float WeaponHeight{ 30.f };
 public:	
 	// Sets default values for this component's properties
 	UTraceComponent();
