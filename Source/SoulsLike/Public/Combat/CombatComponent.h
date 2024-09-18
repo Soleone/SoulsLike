@@ -12,6 +12,9 @@ class SOULSLIKE_API UCombatComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
+UPROPERTY(EditAnywhere)
+TArray<UAnimMontage*> AttackAnimations;
+
 public:	
 	// Sets default values for this component's properties
 	UCombatComponent();
