@@ -2,6 +2,8 @@
 
 
 #include "Combat/TraceComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values for this component's properties
 UTraceComponent::UTraceComponent()
@@ -34,12 +36,13 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 	TArray<FHitResult> HitResults;
 	double WeaponLength{ FVector::Distance(StartSocketLocation, EndSocketLocation) };
-	FVector WeaponDimensions{ WeaponLength, WeaponWidth, WeaponHeight };
+	FVector WeaponDimensions{ WeaponWidth, WeaponHeight, WeaponLength };
 	FCollisionQueryParams IgnoreParams{
 		FName { TEXT("Ignore Collision Params") },
 		false,
 		GetOwner()
 	};
+	FCollisionShape Box{ FCollisionShape::MakeBox(WeaponDimensions / 2) };
 
 	bool bHasFoundTarget{ GetWorld()->SweepMultiByChannel(
 		HitResults,
@@ -47,16 +50,28 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		EndSocketLocation,
 		ShapeRotation,
 		ECollisionChannel::ECC_GameTraceChannel1,
-		FCollisionShape::MakeBox(WeaponDimensions / 2),
+		Box,
 		IgnoreParams
 	) };
 
-	if (bHasFoundTarget)
+	if (bDebugMode)
 	{
-		for (const FHitResult& HitResult : HitResults)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Hit Enemy"));
-		}
+		FVector CenterPoint{
+			UKismetMathLibrary::VLerp(
+				StartSocketLocation, EndSocketLocation, 0.5f
+			)
+		};
+		FLinearColor Color = bHasFoundTarget ? FLinearColor::Green : FLinearColor::Red;
+
+		UKismetSystemLibrary::DrawDebugBox(
+			GetWorld(),
+			CenterPoint,
+			Box.GetExtent(),
+			Color,
+			ShapeRotation.Rotator(),
+			0.1f,
+			0.5f
+		);
 	}
 }
 
