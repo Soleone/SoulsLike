@@ -35,8 +35,18 @@ void UCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UCombatComponent::ComboAttack()
 {
+	if (AttackState == EAttackState::Windup || AttackState == EAttackState::Active)
+	{
+		return;
+	}
+
 	Character->PlayAnimMontage(AttackAnimations[ComboCounter]);
 	
 	ComboCounter = UKismetMathLibrary::Wrap(++ComboCounter, -1, AttackAnimations.Num() - 1);
+}
+
+void UCombatComponent::SetAttackState(EAttackState NewState)
+{
+	AttackState = NewState;
 }
 
