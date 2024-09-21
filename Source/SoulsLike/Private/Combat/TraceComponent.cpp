@@ -90,12 +90,23 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	for (const FHitResult& Hit : HitResults) {
 		AActor* TargetActor{ Hit.GetActor() };
 
+		if (TargetsToIgnore.Contains(TargetActor)) {
+			continue;
+		}
+
 		TargetActor->TakeDamage(
 			CharacterDamage,
 			DamageEvent,
 			GetOwner()->GetInstigatorController(),
 			GetOwner()
 		);
+
+		TargetsToIgnore.Add(TargetActor);
 	}
+}
+
+void UTraceComponent::HandlAttackComplete()
+{
+	TargetsToIgnore.Empty();
 }
 

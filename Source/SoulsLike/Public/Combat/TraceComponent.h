@@ -6,7 +6,6 @@
 #include "Components/ActorComponent.h"
 #include "TraceComponent.generated.h"
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class SOULSLIKE_API UTraceComponent : public UActorComponent
 {
@@ -31,6 +30,9 @@ class SOULSLIKE_API UTraceComponent : public UActorComponent
 
 	UPROPERTY(EditAnywhere)
 	bool bDebugMode{ false };
+
+	TArray<AActor*> TargetsToIgnore;
+
 public:	
 	// Sets default values for this component's properties
 	UTraceComponent();
@@ -43,5 +45,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+	UFUNCTION(BlueprintCallable)
+	void HandlAttackComplete();
 };
