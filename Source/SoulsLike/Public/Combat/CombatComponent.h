@@ -28,9 +28,6 @@ class SOULSLIKE_API UCombatComponent : public UActorComponent
 	UPROPERTY(VisibleAnywhere)
 	int ComboCounter{ 0 };
 
-	UPROPERTY(VisibleAnywhere)
-	EAttackState AttackState{ EAttackState::Idle };
-
 public:	
 	// Sets default values for this component's properties
 	UCombatComponent();
@@ -40,6 +37,10 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+
+	UPROPERTY(VisibleAnywhere)
+	EAttackState AttackState{ EAttackState::Idle };
+
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 

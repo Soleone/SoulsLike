@@ -84,6 +84,18 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	if (Fighter) {
 		CharacterDamage = Fighter->GetDamage();
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Damage %f"), CharacterDamage);
+
+	FDamageEvent DamageEvent;
+
+	for (const FHitResult& Hit : HitResults) {
+		AActor* TargetActor{ Hit.GetActor() };
+
+		TargetActor->TakeDamage(
+			CharacterDamage,
+			DamageEvent,
+			GetOwner()->GetInstigatorController(),
+			GetOwner()
+		);
+	}
 }
 
