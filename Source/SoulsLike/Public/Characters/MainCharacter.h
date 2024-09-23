@@ -21,6 +21,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UStatsComponent* StatsComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class ULockonComponent* LockonComp;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

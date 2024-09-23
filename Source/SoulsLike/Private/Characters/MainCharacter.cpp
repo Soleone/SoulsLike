@@ -4,6 +4,7 @@
 #include "Characters/MainCharacter.h"
 #include "Animations/PlayerAnimInstance.h"
 #include "Characters/StatsComponent.h"
+#include "Combat/LockonComponent.h"
 #include "Characters/EStat.h"
 
 // Sets default values
@@ -13,6 +14,7 @@ AMainCharacter::AMainCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
+	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 }
 
 // Called when the game starts or when spawned
