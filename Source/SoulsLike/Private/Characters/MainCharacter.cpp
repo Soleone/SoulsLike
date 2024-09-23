@@ -5,6 +5,7 @@
 #include "Animations/PlayerAnimInstance.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/LockonComponent.h"
+#include "Combat/CombatComponent.h"
 #include "Characters/EStat.h"
 
 // Sets default values
@@ -15,6 +16,7 @@ AMainCharacter::AMainCharacter()
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
+	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
 }
 
 // Called when the game starts or when spawned

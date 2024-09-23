@@ -24,6 +24,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class ULockonComponent* LockonComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UCombatComponent* CombatComp;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
