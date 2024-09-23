@@ -4,9 +4,11 @@
 #include "Characters/MainCharacter.h"
 #include "Animations/PlayerAnimInstance.h"
 #include "Characters/StatsComponent.h"
+#include "Characters/PlayerActionsComponent.h"
 #include "Combat/LockonComponent.h"
 #include "Combat/CombatComponent.h"
 #include "Combat/TraceComponent.h"
+#include "Combat/BlockComponent.h"
 #include "Characters/EStat.h"
 
 // Sets default values
@@ -19,6 +21,8 @@ AMainCharacter::AMainCharacter()
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
 	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
+	BlockComp = CreateDefaultSubobject<UBlockComponent>(TEXT("Block Component"));
+	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 }
 
 // Called when the game starts or when spawned

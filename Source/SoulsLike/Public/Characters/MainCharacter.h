@@ -30,6 +30,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UTraceComponent* TraceComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UBlockComponent* BlockComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UPlayerActionsComponent* PlayerActionsComp;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
