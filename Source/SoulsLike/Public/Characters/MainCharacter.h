@@ -26,6 +26,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UCombatComponent* CombatComp;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UTraceComponent* TraceComp;
 
 protected:
 	// Called when the game starts or when spawned
