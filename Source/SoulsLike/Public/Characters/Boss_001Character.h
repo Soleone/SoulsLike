@@ -16,6 +16,9 @@ public:
 	// Sets default values for this character's properties
 	ABoss_001Character();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UStatsComponent* StatsComp;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -26,5 +29,4 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 };

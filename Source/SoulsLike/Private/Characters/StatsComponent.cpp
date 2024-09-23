@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "Kismet/KismetMathLibrary.h"
 #include "Characters/StatsComponent.h"
 
 // Sets default values for this component's properties
@@ -29,3 +30,7 @@ void UStatsComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	// ...
 }
 
+void UStatsComponent::ReduceHealth(float Amount)
+{
+	Stats[EStat::Health] -= UKismetMathLibrary::FClamp(Amount, 0.0f, Stats[EStat::Health]);
+}
