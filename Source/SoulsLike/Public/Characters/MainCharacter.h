@@ -52,4 +52,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual float GetDamage() override;
+
+	virtual bool HasEnoughStamina(float Amount) override;
 };

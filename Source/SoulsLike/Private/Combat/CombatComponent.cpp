@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Combat/CombatComponent.h"
-#include "GameFramework/Character.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "GameFramework/Character.h"
+#include "Combat/CombatComponent.h"
+#include "Interfaces/MainPlayer.h"
 
 // Sets default values for this component's properties
 UCombatComponent::UCombatComponent()
@@ -35,6 +36,15 @@ void UCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UCombatComponent::ComboAttack()
 {
+	if (Character->Implements<UMainPlayer>())
+	{
+		IMainPlayer* MainPlayer = Cast<IMainPlayer>(Character);
+		if (MainPlayer && !MainPlayer->HasEnoughStamina(StaminaCost))
+		{
+			return;
+		}
+	}
+
 	if (AttackState == EAttackState::Windup || AttackState == EAttackState::Active)
 	{
 		return;
@@ -44,7 +54,7 @@ void UCombatComponent::ComboAttack()
 	
 	ComboCounter = UKismetMathLibrary::Wrap(++ComboCounter, -1, AttackAnimations.Num() - 1);
 
-	OnAttackPerformedDelegate.Broadcast(StamiaCost);
+	OnAttackPerformedDelegate.Broadcast(StaminaCost);
 }
 
 void UCombatComponent::SetAttackState(EAttackState NewState)

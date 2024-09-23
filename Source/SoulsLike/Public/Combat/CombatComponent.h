@@ -35,7 +35,8 @@ class SOULSLIKE_API UCombatComponent : public UActorComponent
 	int ComboCounter{ 0 };
 	
 	UPROPERTY(EditAnywhere)
-	float StamiaCost{ 5.0f };
+	float StaminaCost{ 5.0f };
+
 public:	
 	// Sets default values for this component's properties
 	UCombatComponent();

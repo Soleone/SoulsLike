@@ -50,3 +50,8 @@ float AMainCharacter::GetDamage()
 {
 	return StatsComp->Stats[EStat::Strength];
 }
+
+bool AMainCharacter::HasEnoughStamina(float Amount)
+{
+	return StatsComp->Stats[EStat::Stamina] >= Amount;
+}
