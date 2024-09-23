@@ -43,6 +43,8 @@ void UCombatComponent::ComboAttack()
 	Character->PlayAnimMontage(AttackAnimations[ComboCounter]);
 	
 	ComboCounter = UKismetMathLibrary::Wrap(++ComboCounter, -1, AttackAnimations.Num() - 1);
+
+	OnAttackPerformedDelegate.Broadcast(StamiaCost);
 }
 
 void UCombatComponent::SetAttackState(EAttackState NewState)

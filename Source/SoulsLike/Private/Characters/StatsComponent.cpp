@@ -34,3 +34,8 @@ void UStatsComponent::ReduceHealth(float Amount)
 {
 	Stats[EStat::Health] -= UKismetMathLibrary::FClamp(Amount, 0.0f, Stats[EStat::Health]);
 }
+
+void UStatsComponent::ReduceStamina(float Amount)
+{
+	Stats[EStat::Stamina] -= UKismetMathLibrary::FClamp(Amount, 0.0f, Stats[EStat::Stamina]);
+}

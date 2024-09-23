@@ -30,4 +30,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	virtual void ReduceHealth(float Amount);
+
+	UFUNCTION(BlueprintCallable)
+	virtual void ReduceStamina(float Amount);
 };
